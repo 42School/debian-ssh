@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 # Install packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server sudo python
