@@ -1,36 +1,16 @@
 debian-ssh
 ==========
 
-Simple Debian/Ubuntu Docker images with *passwordless* SSH access and a regular user
-with `sudo` rights
-
-Tags (and their corresponding official base images)
-----
-
-### Debian
-
-- `latest` -> `debian:latest`
-- `jessie` -> `debian:jessie`
-- `wheezy` -> `debian:wheezy`
-- `squeeze` -> `debian:squeeze`
-
-### Ubuntu
-
-- `ubuntu` -> `ubuntu:latest`
-- `vivid` -> `ubuntu:vivid`
-- `utopic` -> `ubuntu:utopic`
-- `trusty` -> `ubuntu:trusty`
-- `precise` -> `ubuntu:precise`
-
+Debian Docker images with *passwordless* SSH access and sudo right for docker user, ready to ansible
 
 Using
 -----
 
-The images are built by [Docker hub](https://registry.hub.docker.com/u/krlmlr/debian-ssh/).
-Each Debian release corresponds to a tag.  To run an SSH daemon in a new Debian "wheezy"
+The images are built by [Docker hub](https://hub.docker.com/r/bibiche42/debian-ssh).
+Each Debian release corresponds to a tag.  To run an SSH daemon in a new Debian "buster"
 container:
 
-    docker run -d -p 2222:22 -e SSH_KEY="$(cat ~/.ssh/id_rsa.pub)" krlmlr/debian-ssh:wheezy
+    docker run -d -p 2222:22 -e SSH_KEY="$(cat ~/.ssh/id_rsa.pub)" bibiche42/debian-ssh:wheezy
 
 This requires a public key in `~/.ssh/id_rsa.pub`.
 
@@ -54,9 +34,9 @@ Enhancing
 Each Debian release corresponds to a Git branch, the branches differ only by
 the `FROM` element in the `Dockerfile`.
 
-To create the image `krlmlr/debian-ssh` e.g. for Debian "jessie":
+To create the image `bibiche42/debian-ssh` e.g. for Debian "bullseye":
 
-    git checkout jessie
+    git checkout bullseye
     make build
 
 Use `make rebuild` to pull the base image and rebuild without caching.
