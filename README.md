@@ -28,6 +28,28 @@ To connect to this container as regular user:
 Change `2222` to any local port number of your choice.
 
 
+### With Kubernetes
+If you have a kubernetes cluster ready, you can install metallb loadbalancer and deploy debian-ssh image.
+
+I. Install last version of metallb
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.3/manifests/metallb.yaml
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+```
+
+II. Create configmap for IP range
+
+Edit IPv4 range in file `metallb-configmap.yaml` (last line)
+
+III. Deploy image
+
+Edit env variable `SSH_KEY` in `kubernetes/deployment.yaml`
+Launch deployment:
+```
+kubectl apply -f kubernetes
+```
+
 Enhancing
 ---------
 

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debian-deployment
+spec:
+  selector:
+    matchLabels:
+      app: debian-ssh
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: debian-ssh
+    spec:
+      containers:
+      - name: debian-ssh
+        image: bibiche42/debian-ssh
+        command: [ "/run.sh" ]
+        env:
+        - name: SSH_KEY
+          value: "<your-ssh-public-key>"
+        ports:
+        - containerPort: 22

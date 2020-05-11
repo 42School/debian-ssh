@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: debian-test-srv
+  annotations:
+    metallb.universe.tf/address-pool: default
+spec:
+  selector:
+    app: debian-ssh
+  ports:
+    - name: ssh
+      port: 32222
+      targetPort: 22
+  externalTrafficPolicy: Local
+  type: LoadBalancer
